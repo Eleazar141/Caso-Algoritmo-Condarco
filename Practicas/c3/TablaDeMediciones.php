@@ -144,9 +144,10 @@ Se busca el último número de cada lista para medir el peor caso.
 </table>
 
 <br>
-
+<p></p>
 <h2>Comparaciones</h2>
-
+<p>
+//lista
 <p>
 Lista mediana comparada con lista pequeña:
 <strong>
@@ -154,7 +155,7 @@ Lista mediana comparada con lista pequeña:
 veces
 </strong>
 </p>
-
+//lista
 <p>
 Lista grande comparada con lista pequeña:
 <strong>
