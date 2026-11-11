@@ -58,7 +58,7 @@ $pasos1000000 = ceil(log(1000000, 2));
 
 <h2>Datos</h2>
 <p>[3, 8, 12, 19, 25, 31, 40, 47]</p>
-
+<p>
 <h2>Buscar 31</h2>
 <p>Medios revisados: <?php echo implode(' → ', $pasos31); ?></p>
 <p>Pasos: <?php echo count($pasos31); ?></p>
