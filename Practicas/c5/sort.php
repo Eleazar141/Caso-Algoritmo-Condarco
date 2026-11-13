@@ -1,129 +1,116 @@
 <?php
 
-session_start(); // Guarda los datos de la tabla aunque recargues la página
-set_time_limit(0); // Evita que la página se detenga si el cálculo tarda mucho
+session_start();
+set_time_limit(0);
 
-// Insercion
-function insercion(&$lista) {
-    // Recorre la lista desde el segundo número
-    for ($i = 1; $i < count($lista); $i++) {
-        $actual = $lista[$i]; // Número que vamos a acomodar
+function ordenarPorInsercion(&$numeros) {
+    $totalElementos = count($numeros);
+    for ($indiceActual = 1; $indiceActual < $totalElementos; $indiceActual++) {
+        $valorActual = $numeros[$indiceActual];
         
-        // Mueve los números más grandes hacia la derecha
-        for ($j = $i - 1; $j >= 0 && $lista[$j] > $actual; $j--) {
-            $lista[$j + 1] = $lista[$j];
+        for ($indiceAnterior = $indiceActual - 1; $indiceAnterior >= 0 && $numeros[$indiceAnterior] > $valorActual; $indiceAnterior--) {
+            $numeros[$indiceAnterior + 1] = $numeros[$indiceAnterior];
         }
         
-        // Pone el número en el espacio libre que quedó
-        $lista[$j + 1] = $actual;
+        $numeros[$indiceAnterior + 1] = $valorActual;
     }
 }
 
-// MÉTODO QUICKSORT
-function quickSort(&$lista, $inicio, $fin) {
-    // Si ya no hay nada que dividir, termina
-    if ($inicio >= $fin) return;
+function ordenarPorQuickSort(&$numeros, $indiceInicio, $indiceFin) {
+    if ($indiceInicio >= $indiceFin) return;
 
-    // Toma el número del medio como referencia
-    $pivote = $lista[intdiv($inicio + $fin, 2)];
-    $izq = $inicio;
-    $der = $fin;
+    $valorPivote = $numeros[intdiv($indiceInicio + $indiceFin, 2)];
+    $punteroIzquierdo = $indiceInicio;
+    $punteroDerecho = $indiceFin;
 
-    // Separa los números menores a la izquierda y los mayores a la derecha
-    while ($izq <= $der) {
-        while ($lista[$izq] < $pivote) $izq++; // Busca un numero grande en la izquierda
-        while ($lista[$der] > $pivote) $der--; // Busca un numerochico en la derecha
+    while ($punteroIzquierdo <= $punteroDerecho) {
+        while ($numeros[$punteroIzquierdo] < $valorPivote) $punteroIzquierdo++;
+        while ($numeros[$punteroDerecho] > $valorPivote) $punteroDerecho--;
 
-        // Si están del lado equivocado cambia de lugar
-        if ($izq <= $der) {
-            [$lista[$izq], $lista[$der]] = [$lista[$der], $lista[$izq]];
-            $izq++;
-            $der--;
+        if ($punteroIzquierdo <= $punteroDerecho) {
+            [$numeros[$punteroIzquierdo], $numeros[$punteroDerecho]] = [$numeros[$punteroDerecho], $numeros[$punteroIzquierdo]];
+            $punteroIzquierdo++;
+            $punteroDerecho--;
         }
     }
 
-    // Repite lo mismo con la mitad izquierda y la mitad derecha
-    if ($inicio < $der) quickSort($lista, $inicio, $der);
-    if ($izq < $fin) quickSort($lista, $izq, $fin);
+    if ($indiceInicio < $punteroDerecho) ordenarPorQuickSort($numeros, $indiceInicio, $punteroDerecho);
+    if ($punteroIzquierdo < $indiceFin) ordenarPorQuickSort($numeros, $punteroIzquierdo, $indiceFin);
 }
 
-// Tamaños de las listas que vamos a probar
-$cantidades = array(10000, 20000, 40000, 80000);
+$tamanosDePrueba =;
 
-// Si presionas "Limpiar", borra los resultados de la tabla
-if (isset($_POST['borrar'])) $_SESSION['tabla'] = [];
+if (isset($_POST['limpiarTabla'])) {
+    $_SESSION['resultadosTabla'] = [];
+}
 
-// Si presionas uno de los botones para probar
-if (isset($_POST['cantidad'])) {
-    $cantidad = (int)$_POST['cantidad'];
+if (isset($_POST['cantidadElementos'])) {
+    $cantidadElementos = (int)$_POST['cantidadElementos'];
 
-    // "Calienta" el programa con una lista chica antes de tomar el tiempo real
-    $calentar = range(1, 500);
-    shuffle($calentar);
-    insercion($calentar);
-    quickSort($calentar, 0, 499);
+    $listaCalentamiento = range(1, 500);
+    shuffle($listaCalentamiento);
+    ordenarPorInsercion($listaCalentamiento);
+    ordenarPorQuickSort($listaCalentamiento, 0, 499);
 
-    $tIns = 0;   // Tiempo total de Inserción
-    $tQuick = 0; // Tiempo total de QuickSort
+    $tiempoTotalInsercion = 0;
+    $tiempoTotalQuickSort = 0;
+    $numeroDeRepeticiones = 3;
 
-    // Hace la prueba 3 veces para sacar un promedio
-    for ($vuelta = 0; $vuelta < 3; $vuelta++) {
-        // Crea una lista con números al azar
-        $datos = [];
-        for ($i = 0; $i < $cantidad; $i++) $datos[] = rand(1, 100000);
+    for ($repeticion = 0; $repeticion < $numeroDeRepeticiones; $repeticion++) {
+        $numerosAleatorios = [];
+        for ($i = 0; $i < $cantidadElementos; $i++) {
+            $numerosAleatorios[] = rand(1, 100000);
+        }
 
-        // --- Prueba de Inserción ---
-        $copia = $datos; // Hace una copia para no dañar la lista original
-        $t = microtime(true); // Empieza el cronómetro
-        insercion($copia);
-        $tIns += (microtime(true) - $t) * 1000; // Guarda los milisegundos que tardó
+        $listaParaOrdenar = $numerosAleatorios;
+        $tiempoInicio = microtime(true);
+        ordenarPorInsercion($listaParaOrdenar);
+        $tiempoTotalInsercion += (microtime(true) - $tiempoInicio) * 1000;
 
-        // Revisa que haya quedado bien ordenado
-        if ($copia !== ($ok = $datos) && !sort($ok) || $copia !== $ok) die("Error");
+        $listaVerificada = $numerosAleatorios;
+        sort($listaVerificada);
+        if ($listaParaOrdenar !== $listaVerificada) die("Error en Inserción");
 
-        // --- Prueba de QuickSort ---
-        $copia = $datos; // Usa exactamente la misma lista desordenada de antes
-        $t = microtime(true); // Empieza el cronómetro
-        quickSort($copia, 0, $cantidad - 1);
-        $tQuick += (microtime(true) - $t) * 1000; // Guarda los milisegundos que tardó
+        $listaParaOrdenar = $numerosAleatorios;
+        $tiempoInicio = microtime(true);
+        ordenarPorQuickSort($listaParaOrdenar, 0, $cantidadElementos - 1);
+        $tiempoTotalQuickSort += (microtime(true) - $tiempoInicio) * 1000;
 
-        // Revisa que haya quedado bien ordenado
-        if ($copia !== $ok) die("Error");
+        if ($listaParaOrdenar !== $listaVerificada) die("Error en QuickSort");
     }
 
-    // Saca el promedio de las 3 pruebas y lo guarda para mostrarlo en la tabla
-    $_SESSION['tabla'][$cantidad] = [
-        round($tIns / 3, 2) . ' ms',
-        round($tQuick / 3, 2) . ' ms'
+    $_SESSION['resultadosTabla'][$cantidadElementos] = [
+        round($tiempoTotalInsercion / $numeroDeRepeticiones, 2) . ' ms',
+        round($tiempoTotalQuickSort / $numeroDeRepeticiones, 2) . ' ms'
     ];
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <body style="font-family: sans-serif; margin: 30px;">
     <h3>Inserción vs QuickSort (3 corridas)</h3>
 
-    <!-- Botones para elegir cuántos números ordenar -->
-    <form method="POST" onsubmit="aviso.innerText='Calculando...'">
-        <?php foreach ($cantidades as $c): ?>
-            <button name="cantidad" value="<?= $c ?>">Probar <?= $c ?></button>
+    <form method="POST" onsubmit="mensajeEstado.innerText='Calculando...'">
+        <?php foreach ($tamanosDePrueba as $tamano): ?>
+            <button name="cantidadElementos" value="<?= $tamano ?>">Probar <?= $tamano ?></button>
         <?php endforeach; ?>
-        <button name="borrar">Limpiar</button>
+        <button name="limpiarTabla">Limpiar</button>
     </form>
 
-    <!-- Mensaje rojo que aparece mientras carga -->
-    <p id="aviso" style="color: red;"></p>
+    <p id="mensajeEstado" style="color: red;"></p>
 
-    <!-- Tabla donde se muestran los tiempos -->
     <table border="1" cellpadding="8" cellspacing="0">
-        <tr><th>Cantidad</th><th>Inserción</th><th>QuickSort</th></tr>
-        <?php foreach ($cantidades as $c): ?>
+        <tr>
+            <th>Cantidad</th>
+            <th>Inserción</th>
+            <th>QuickSort</th>
+        </tr>
+        <?php foreach ($tamanosDePrueba as $tamano): ?>
             <tr>
-                <td><?= $c ?></td>
-                <!-- Muestra el tiempo guardado o un guion '-' si aún no se prueba -->
-                <td><?= $_SESSION['tabla'][$c][0] ?? '-' ?></td>
-                <td><?= $_SESSION['tabla'][$c][1] ?? '-' ?></td>
+                <td><?= $tamano ?></td>
+                <td><?= $_SESSION['resultadosTabla'][$tamano][0] ?? '-' ?></td>
+                <td><?= $_SESSION['resultadosTabla'][$tamano][1] ?? '-' ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
