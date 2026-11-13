@@ -3,7 +3,7 @@
 session_start(); // Guarda los datos de la tabla aunque recargues la página
 set_time_limit(0); // Evita que la página se detenga si el cálculo tarda mucho
 
-// 1. MÉTODO DE INSERCIÓN 
+// Insercion
 function insercion(&$lista) {
     // Recorre la lista desde el segundo número
     for ($i = 1; $i < count($lista); $i++) {
@@ -19,12 +19,12 @@ function insercion(&$lista) {
     }
 }
 
-// 2. MÉTODO QUICKSORT
+// MÉTODO QUICKSORT
 function quickSort(&$lista, $inicio, $fin) {
     // Si ya no hay nada que dividir, termina
     if ($inicio >= $fin) return;
 
-    // Toma el número del medio como referencia (pivote)
+    // Toma el número del medio como referencia
     $pivote = $lista[intdiv($inicio + $fin, 2)];
     $izq = $inicio;
     $der = $fin;
@@ -34,7 +34,7 @@ function quickSort(&$lista, $inicio, $fin) {
         while ($lista[$izq] < $pivote) $izq++; // Busca un numero grande en la izquierda
         while ($lista[$der] > $pivote) $der--; // Busca un numerochico en la derecha
 
-        // Si están del lado equivocado, los cambia de lugar
+        // Si están del lado equivocado cambia de lugar
         if ($izq <= $der) {
             [$lista[$izq], $lista[$der]] = [$lista[$der], $lista[$izq]];
             $izq++;
