@@ -31,8 +31,8 @@ function quickSort(&$lista, $inicio, $fin) {
 
     // Separa los números menores a la izquierda y los mayores a la derecha
     while ($izq <= $der) {
-        while ($lista[$izq] < $pivote) $izq++; // Busca uno grande en la izquierda
-        while ($lista[$der] > $pivote) $der--; // Busca uno chico en la derecha
+        while ($lista[$izq] < $pivote) $izq++; // Busca un numero grande en la izquierda
+        while ($lista[$der] > $pivote) $der--; // Busca un numerochico en la derecha
 
         // Si están del lado equivocado, los cambia de lugar
         if ($izq <= $der) {
