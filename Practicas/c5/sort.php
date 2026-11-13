@@ -80,37 +80,51 @@ if (isset($_POST['cantidadElementos'])) {
     }
 
     $_SESSION['resultadosTabla'][$cantidadElementos] = [
-        round($tiempoTotalInsercion / $numeroDeRepeticiones, 2) . ' ms',
-        round($tiempoTotalQuickSort / $numeroDeRepeticiones, 2) . ' ms'
+        number_format($tiempoTotalInsercion / $numeroDeRepeticiones, 2) . ' ms',
+        number_format($tiempoTotalQuickSort / $numeroDeRepeticiones, 2) . ' ms'
     ];
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-<body style="font-family: sans-serif; margin: 30px;">
-    <h3>Inserción vs QuickSort (3 corridas)</h3>
+<head>
+    <meta charset="UTF-8">
+    <title>Comparativa: Inserción vs QuickSort</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; color: #333; }
+        button { padding: 8px 14px; margin-right: 6px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #f4f4f4; }
+        button:hover { background: #e2e2e2; }
+        .btn-limpiar { background: #ffecec; border-color: #f5c2c2; color: #a33; }
+        table { border-collapse: collapse; margin-top: 15px; width: 420px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        th { background-color: #f0f0f0; }
+        #mensajeEstado { color: #d9534f; font-weight: bold; min-height: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Comparativa de Ordenamiento (Promedio de 3 corridas)</h2>
 
-    <form method="POST" onsubmit="mensajeEstado.innerText='Calculando...'">
+    <form method="POST" onsubmit="mensajeEstado.innerText='Calculando tiempos, por favor espera...'">
         <?php foreach ($tamanosDePrueba as $tamano): ?>
-            <button name="cantidadElementos" value="<?= $tamano ?>">Probar <?= $tamano ?></button>
+            <button name="cantidadElementos" value="<?= $tamano ?>">Probar <?= number_format($tamano) ?></button>
         <?php endforeach; ?>
-        <button name="limpiarTabla">Limpiar</button>
+        <button name="limpiarTabla" class="btn-limpiar">Limpiar tabla</button>
     </form>
 
-    <p id="mensajeEstado" style="color: red;"></p>
+    <p id="mensajeEstado"></p>
 
-    <table border="1" cellpadding="8" cellspacing="0">
+    <table>
         <tr>
-            <th>Cantidad</th>
+            <th>Cantidad de datos</th>
             <th>Inserción</th>
             <th>QuickSort</th>
         </tr>
         <?php foreach ($tamanosDePrueba as $tamano): ?>
             <tr>
-                <td><?= $tamano ?></td>
-                <td><?= $_SESSION['resultadosTabla'][$tamano][0] ?? '-' ?></td>
-                <td><?= $_SESSION['resultadosTabla'][$tamano][1] ?? '-' ?></td>
+                <td><?= number_format($tamano) ?></td>
+                <td><?= $_SESSION['resultadosTabla'][$tamano] ?? '-' ?></td>
+                <td><?= $_SESSION['resultadosTabla'][$tamano] ?? '-' ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
