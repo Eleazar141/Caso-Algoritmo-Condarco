@@ -5,17 +5,21 @@ set_time_limit(0); // Evita que la página se detenga si el cálculo tarda mucho
 
 // Insercion
 function insercion(&$lista) {
-    // Recorre la lista desde el segundo número
-    for ($i = 1; $i < count($lista); $i++) {
-        $actual = $lista[$i]; // Número que vamos a acomodar
-        
-        // Mueve los números más grandes hacia la derecha
-        for ($j = $i - 1; $j >= 0 && $lista[$j] > $actual; $j--) {
-            $lista[$j + 1] = $lista[$j];
+    $total = count($lista);
+
+    // Toma cada número uno por uno, empezando desde el segundo
+    for ($i = 1; $i < $total; $i++) {
+        $numeroActual = $lista[$i];
+        $anterior = $i - 1;
+
+        // Mientras el número de la izquierda sea más grande, lo mueve a la derecha
+        while ($anterior >= 0 && $lista[$anterior] > $numeroActual) {
+            $lista[$anterior + 1] = $lista[$anterior];
+            $anterior--;
         }
-        
-        // Pone el número en el espacio libre que quedó
-        $lista[$j + 1] = $actual;
+
+        // Coloca el número en el lugar vacío que quedó
+        $lista[$anterior + 1] = $numeroActual;
     }
 }
 
@@ -101,31 +105,165 @@ if (isset($_POST['cantidad'])) {
 
 <!DOCTYPE html>
 <html>
-<body style="font-family: sans-serif; margin: 30px;">
-    <h3>Inserción vs QuickSort (3 corridas)</h3>
+     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .contenedor {
+            background: #ffffff;
+            width: 100%;
+            max-width: 650px;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+        }
+        h3 {
+            font-size: 1.5rem;
+            color: #0f172a;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .subtitulo {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+        .botones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background-color: #2563eb;
+            color: white;
+        }
+        button:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .btn-limpiar {
+            background-color: #fee2e2;
+            color: #dc2626;
+        }
+        .btn-limpiar:hover {
+            background-color: #fecaca;
+            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.15);
+        }
+        #aviso {
+            text-align: center;
+            color: #d97706;
+            font-weight: 600;
+            font-size: 0.95rem;
+            min-height: 24px;
+            margin-bottom: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #0f172a;
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            padding: 14px;
+        }
+        td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        tr:hover td {
+            background-color: #f1f5f9;
+        }
+        .dato-cantidad {
+            font-weight: 700;
+            color: #334155;
+        }
+        .dato-ins {
+            color: #dc2626;
+            font-weight: 600;
+        }
+        .dato-quick {
+            color: #16a34a;
+            font-weight: 600;
+        }
+    </style><body>
 
-    <!-- Botones para elegir cuántos números ordenar -->
-    <form method="POST" onsubmit="aviso.innerText='Calculando...'">
-        <?php foreach ($cantidades as $c): ?>
-            <button name="cantidad" value="<?= $c ?>">Probar <?= $c ?></button>
-        <?php endforeach; ?>
-        <button name="borrar">Limpiar</button>
-    </form>
+    <div class="contenedor">
+        <h3>Inserción vs QuickSort</h3>
+        <p class="subtitulo">Comparativa de rendimiento (Promedio de 3 corridas)</p>
 
-    <!-- Mensaje rojo que aparece mientras carga -->
-    <p id="aviso" style="color: red;"></p>
+        <!-- Botones para elegir cuántos números ordenar -->
+        <form method="POST" class="botones" onsubmit="aviso.innerText='⏳ Calculando tiempos, por favor espera...'">
+            <?php foreach ($cantidades as $c): ?>
+                <button name="cantidad" value="<?= $c ?>">Probar <?= number_format($c) ?></button>
+            <?php endforeach; ?>
+            <button name="borrar" class="btn-limpiar">Limpiar</button>
+        </form>
 
-    <!-- Tabla donde se muestran los tiempos -->
-    <table border="1" cellpadding="8" cellspacing="0">
-        <tr><th>Cantidad</th><th>Inserción</th><th>QuickSort</th></tr>
-        <?php foreach ($cantidades as $c): ?>
-            <tr>
-                <td><?= $c ?></td>
-                <!-- Muestra el tiempo guardado o un guion '-' si aún no se prueba -->
-                <td><?= $_SESSION['tabla'][$c][0] ?? '-' ?></td>
-                <td><?= $_SESSION['tabla'][$c][1] ?? '-' ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
+        <!-- Mensaje que aparece mientras carga -->
+        <p id="aviso"></p>
+
+        <!-- Tabla donde se muestran los tiempos -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Inserción (O(n²))</th>
+                    <th>QuickSort (O(n log n))</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($cantidades as $c): ?>
+                    <tr>
+                        <td class="dato-cantidad"><?= number_format($c) ?></td>
+                        <!-- Muestra el tiempo guardado o un guion '-' si aún no se prueba -->
+                        <td class="dato-ins"><?= $_SESSION['tabla'][$c][0] ?? '-' ?></td>
+                        <td class="dato-quick"><?= $_SESSION['tabla'][$c][1] ?? '-' ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>
