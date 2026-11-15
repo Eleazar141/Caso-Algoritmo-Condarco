@@ -5,21 +5,17 @@ set_time_limit(0); // Evita que la página se detenga si el cálculo tarda mucho
 
 // Insercion
 function insercion(&$lista) {
-    $total = count($lista);
-
-    // Toma cada número uno por uno, empezando desde el segundo
-    for ($i = 1; $i < $total; $i++) {
-        $numeroActual = $lista[$i];
-        $anterior = $i - 1;
-
-        // Mientras el número de la izquierda sea más grande, lo mueve a la derecha
-        while ($anterior >= 0 && $lista[$anterior] > $numeroActual) {
-            $lista[$anterior + 1] = $lista[$anterior];
-            $anterior--;
+    // Recorre la lista desde el segundo número
+    for ($i = 1; $i < count($lista); $i++) {
+        $actual = $lista[$i]; // Número que vamos a acomodar
+        
+        // Mueve los números más grandes hacia la derecha
+        for ($j = $i - 1; $j >= 0 && $lista[$j] > $actual; $j--) {
+            $lista[$j + 1] = $lista[$j];
         }
-
-        // Coloca el número en el lugar vacío que quedó
-        $lista[$anterior + 1] = $numeroActual;
+        
+        // Pone el número en el espacio libre que quedó
+        $lista[$j + 1] = $actual;
     }
 }
 
