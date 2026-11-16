@@ -12,6 +12,7 @@ function HayRepetidosCurado($carnets)
 
         $vistos[$carnet] = true;
     }
-
+    
+    return false;
 
 }
