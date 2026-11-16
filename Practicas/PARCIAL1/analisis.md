@@ -16,3 +16,12 @@ F4
 Costo: O(n log n)
 
 Justificación: El algoritmo combina un recorrido de los elementos con un proceso que reduce el tamaño del problema a la mitad en cada paso.
+
+(b)
+
+1.
+
+T(n) = 3T(n/2) + n
+- a=3, b=2, d=1
+- 3 > 2
+- O(n^1.58)
