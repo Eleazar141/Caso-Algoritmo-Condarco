@@ -1,4 +1,5 @@
 Eleazar Rolando Condarco Beltrán
+
 P1.1 – Analizar
 F1
 Costo: O(n)
@@ -17,11 +18,17 @@ Costo: O(n log n)
 
 Justificación: El algoritmo combina un recorrido de los elementos con un proceso que reduce el tamaño del problema a la mitad en cada paso.
 
+---------------------------------------------------------------------------
 (b)
-
 1.
-
 T(n) = 3T(n/2) + n
 - a=3, b=2, d=1
 - 3 > 2
-- O(n^1.58)
+- O(n)
+
+2.
+T(n) = T(n/2) + n²
+- a=1, b=2, d=2
+- 1 < 4
+- O(n²)
+
