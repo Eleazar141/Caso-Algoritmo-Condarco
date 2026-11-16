@@ -1,3 +1,5 @@
+Eleazar Rolando Condarco Beltran
+
 Mi cura recorre la lista una sola vez guardando los carnets vistos en un arreglo auxiliar con un costo de O(n).
 
 
