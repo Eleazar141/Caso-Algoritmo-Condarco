@@ -16,11 +16,6 @@ Justificacion: Combina el recorrido de los datos con la division del problema en
 
 ---------------------------------------------------------------------------
 (b)
-1.
-T(n) = 3T(n/2) + n
-- a=3, b=2, d=1
-- 3 > 2
-- O(n)
 
 2.
 T(n) = T(n/2) + n²
