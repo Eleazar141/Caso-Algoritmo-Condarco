@@ -1,6 +1,5 @@
-//Eleazar Rolando Condarco Beltran
-
 <?php
+//Eleazar Rolando Condarco Beltran
 
 function HayRepetidosPorPares($carnets)
 {
