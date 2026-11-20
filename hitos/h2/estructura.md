@@ -34,4 +34,5 @@ Tamaños a medir
 se trabaja con 2 cantidades de postulantes:
 
 70 postulantes, que representa la cantidad habitual y con mas carga
+
 50 postulantes, que representa la cantidad menor y con menos carga
