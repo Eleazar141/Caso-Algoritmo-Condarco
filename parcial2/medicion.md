@@ -1,4 +1,4 @@
-
+Eleazar Rolando Condarco Beltran
 
 Tamaño (n)_______Ingenuo (corridas)______Promedio Ingenuo-v<______eces vs. anterior______Mi solución (corridas)___Promedio Solución	___Veces vs. anterior
 5.000 (n)________1.3102s_____________________1.2984s_________________________________________0.0232s___________________0.0260s
@@ -17,3 +17,8 @@ _________________5.4299s________________________________________________________
 20.000 (4n)______34.2081s____________________33.6035s________________6.21x__________________0.1194s____________________0.1380s_____________2.35x
 _________________34.2749s____________________________________________0.1563s
 _________________32.3275s____________________________________________0.1384s 		
+
+
+La solución ingenua tarda mucho mas cuando aumenta la cantidad de pedidos. mi solución mantiene tiempos mas bajos y responde mejor con cantidades grandes de datos
+
+Las pequeñas diferencias entre las mediciones son normales y se deben al funcionamiento del sistema mientras se ejecutan las pruebas
