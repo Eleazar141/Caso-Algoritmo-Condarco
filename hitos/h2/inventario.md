@@ -32,3 +32,15 @@ Debido ah que cada examen ahí diferentes postulantes las operaciones son consta
 
 
 4. ¿Qué estructura la resuelve barato y Cuál sufre?
+   
+Buscar postulante por CI: barato con los alumnos separados por categoría. Sufre la lista general porque hay que revisar más registros.
+
+Comparar datos: barato con información organizada por categoría. Sufre la lista general porque los datos están mezclados.
+
+Borrar y corregir datos: barato con categorías. Sufre la lista general porque cuesta más encontrar al postulante.
+
+Verificar duplicados: barato con categorías. Sufre la lista general porque es más fácil que se repitan registros.
+
+Recorrer postulantes para generar actas: barato con categorías. Sufre la lista general porque hay que revisar toda la lista.
+
+Insertar postulantes en la lista final: ambas estructuras lo realizan sin mucha dificultad.
