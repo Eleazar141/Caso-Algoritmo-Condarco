@@ -1,1 +1,15 @@
+Eleazar Rolando Condarco Beltran
+
+P2.1 — Elegir
+
+
+Operación__________________Frecuencia por jornada_____________Estructura elegida_______________Costo temporal
+Registrar_______________________120.000 veces____________________Heap + Hash_______________________O(log n)
+Preparar Siguiente_______________120.000 veces_____________________Heap_____________________________O(log n)
+Esta Pendiente___________________40.000 veces______________________Hash_____________________________O(1)
+Pendientes______________________Muy frecuente___________________Contador___________________________O(1)
+
+
+
+
 
