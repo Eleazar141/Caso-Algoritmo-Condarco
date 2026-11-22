@@ -50,4 +50,25 @@ class ReceptorMejorado
     }
 }
 
+
+$pasteleria = new ReceptorMejorado();
+
+$pasteleria->Registrar("Torta", 30);
+$pasteleria->Registrar("Queque", 10);
+$pasteleria->Registrar("Galletas", 20);
+$pasteleria->Registrar("Pie", 10);
+
+echo "Pendientes: " . $pasteleria->Pendientes() . "<br>";
+
+echo "¿Queque pendiente? ";
+echo $pasteleria->EstaPendiente("Queque") ? "Si" : "No";
+echo "<br><br>";
+
+echo "Preparando: " . $pasteleria->PrepararSiguiente() . "<br>";
+echo "Preparando: " . $pasteleria->PrepararSiguiente() . "<br>";
+echo "Preparando: " . $pasteleria->PrepararSiguiente() . "<br>";
+echo "Preparando: " . $pasteleria->PrepararSiguiente() . "<br><br>";
+
+echo "Pendientes: " . $pasteleria->Pendientes();
+
 ?>
