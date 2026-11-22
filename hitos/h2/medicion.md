@@ -1,4 +1,4 @@
-Para comparar ambas formas de trabajo, primero se hizo una ejecución de prueba para verificar que todo funcione correctamente. Después, para cada cantidad de postulantes, se realizaron 3 mediciones y se calculó el promedio de los tiempos obtenidos.
+Comparamos ambas formas de trabajo probando con 50, 60 y 70 postulantes luego revisamos que todo funcionara bien, repetimos cada prueba 3 veces y calculamos el tiempo promedio que tomó buscar y revisar los datos
 
 Postulantes______________	Ingenua__________Adecuada 
 
@@ -8,3 +8,4 @@ Postulantes______________	Ingenua__________Adecuada
 
 70	______________________0.00008098______0.00000167
 
+Separar a los postulantes por categoría ayudo a encontrarlos mas rapido y revisar sus datos con mayor facilidadCuando todos los postulantes estan juntos, la búsqueda toma mas tiempo y puede causar mas errores
