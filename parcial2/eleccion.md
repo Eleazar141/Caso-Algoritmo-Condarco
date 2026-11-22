@@ -10,6 +10,7 @@ Esta Pendiente___________________40.000 veces______________________Hash_________
 Pendientes______________________Muy frecuente___________________Contador___________________________O(1)
 
 
+
 p2.2 - ¿Por qué no sirve una lista simple?
 
 la lista simple funciona correctamente pero cuando hay muchos pedidos se vuelve lenta Para encontrar el pedido más urgente o verificar si un pedido sigue pendiente es necesario revisar muchos elementos de la lista
@@ -17,6 +18,15 @@ la lista simple funciona correctamente pero cuando hay muchos pedidos se vuelve 
 En una jornada normal se manejan 120.000 pedidos y 40.000 consultas por lo que la cantidad de búsquedas es muy grande
 
 Con una lista simple:
+
+120.000 × 120.000 + 40.000 × 120.000 = 19.200.000.000
+
+En cambio usando una cola de prioridad junto con una tabla hass:
+
+120.000 × 17 + 120.000 × 17 + 40.000 = 4.120.000 operaciones
+
+Por esta razón la lista simple no es adecuada para una jornada con tantos pedidos
+
 
 
 
