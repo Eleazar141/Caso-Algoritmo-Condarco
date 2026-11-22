@@ -4,6 +4,7 @@ function solucionIngenua($n)
 {
     for ($i = 0; $i < $n; $i++) {
         for ($j = 0; $j < $n; $j++) {
+            // Simula buscar un postulante revisando toda la lista
         }
     }
 }
@@ -11,48 +12,62 @@ function solucionIngenua($n)
 function solucionAdecuada($n)
 {
     for ($i = 0; $i < $n; $i++) {
+        // Simula buscar postulantes organizados por categoria
     }
 }
 
-$tamanos = [50, 60, 70];
+$tamanos = [8, 16, 32, 64];
 
-echo "<h2>Resultados</h2>";
+echo "<table border='1' cellpadding='5'>";
+echo "<tr>
+        <th>n</th>
+        <th>Ingenua (ms)</th>
+        <th>Adecuada (ms)</th>
+      </tr>";
 
 foreach ($tamanos as $n) {
 
+    // Calentamiento
     solucionIngenua($n);
     solucionAdecuada($n);
 
+    // Ingenua (3 pruebas)
     $inicio = microtime(true);
     solucionIngenua($n);
-    $tiempo1 = microtime(true) - $inicio;
-
-    $inicio = microtime(true);
-    solucionIngenua($n);
-    $tiempo2 = microtime(true) - $inicio;
+    $t1 = microtime(true) - $inicio;
 
     $inicio = microtime(true);
     solucionIngenua($n);
-    $tiempo3 = microtime(true) - $inicio;
+    $t2 = microtime(true) - $inicio;
 
-    $promedioIngenua = ($tiempo1 + $tiempo2 + $tiempo3) / 3;
+    $inicio = microtime(true);
+    solucionIngenua($n);
+    $t3 = microtime(true) - $inicio;
+
+    $promedioIngenua = (($t1 + $t2 + $t3) / 3) * 1000;
+
 
     $inicio = microtime(true);
     solucionAdecuada($n);
-    $tiempo1 = microtime(true) - $inicio;
+    $t1 = microtime(true) - $inicio;
 
     $inicio = microtime(true);
     solucionAdecuada($n);
-    $tiempo2 = microtime(true) - $inicio;
+    $t2 = microtime(true) - $inicio;
 
     $inicio = microtime(true);
     solucionAdecuada($n);
-    $tiempo3 = microtime(true) - $inicio;
+    $t3 = microtime(true) - $inicio;
 
-    $promedioAdecuada = ($tiempo1 + $tiempo2 + $tiempo3) / 3;
+    $promedioAdecuada = (($t1 + $t2 + $t3) / 3) * 1000;
 
-    echo "Postulantes: $n <br>";
-    echo "Promedio Solución Ingenua: " . number_format($promedioIngenua, 8) . " segundos<br>";
-    echo "Promedio Solución Adecuada: " . number_format($promedioAdecuada, 8) . " segundos<br><br>";
+    echo "<tr>";
+    echo "<td>$n</td>";
+    echo "<td>" . number_format($promedioIngenua, 6) . "</td>";
+    echo "<td>" . number_format($promedioAdecuada, 6) . "</td>";
+    echo "</tr>";
 }
+
+echo "</table>";
+
 ?>
