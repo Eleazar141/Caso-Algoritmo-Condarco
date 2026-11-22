@@ -10,6 +10,19 @@ Esta Pendiente___________________40.000 veces______________________Hash_________
 Pendientes______________________Muy frecuente___________________Contador___________________________O(1)
 
 
+p2.2 - ¿Por qué no sirve una lista simple?
+
+la lista simple funciona correctamente pero cuando hay muchos pedidos se vuelve lenta Para encontrar el pedido más urgente o verificar si un pedido sigue pendiente es necesario revisar muchos elementos de la lista
+
+En una jornada normal se manejan 120.000 pedidos y 40.000 consultas por lo que la cantidad de búsquedas es muy grande
+
+Con una lista simple:
+
+
+
+p.2.3 - Una condición en la que cambiarías de opinión
+
+se cambiaria si hubiera pocos pedidos. En ese caso una lista simple podría ser suficiente por su simplicidad de implementación.
 
 
 
