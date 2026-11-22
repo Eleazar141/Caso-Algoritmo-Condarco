@@ -1,4 +1,6 @@
-Comparamos ambas formas de trabajo probando con 50, 60 y 70 postulantes luego revisamos que todo funcionara bien, repetimos cada prueba 3 veces y calculamos el tiempo promedio que tomó buscar y revisar los datos
+O(n)
+
+Comparamos ambas formas de trabajo probando con 50, 60 y 70 postulantes. Primero verificamos que todo funcionara bien, luego repetimos cada prueba 3 veces y calculamos el tiempo promedio que tomó buscar y revisar los datos.
 
 Postulantes______________	Ingenua__________Adecuada 
 
@@ -8,4 +10,6 @@ Postulantes______________	Ingenua__________Adecuada
 
 70	______________________0.00008098______0.00000167
 
-Separar a los postulantes por categoría ayudo a encontrarlos mas rapido y revisar sus datos con mayor facilidadCuando todos los postulantes estan juntos, la búsqueda toma mas tiempo y puede causar mas errores
+al aumentar la cantidad de postulantes tambien aumentaron los tiempos de ejecucion
+la solucion adecuada fue mas rapida porque los postulantes ya estaban organizados por categoria y se acerca a un costo o(n)
+cuando todos los postulantes estan juntos la busqueda tarda mas y requiere mas revisiones
