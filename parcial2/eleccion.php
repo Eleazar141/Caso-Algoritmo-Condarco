@@ -1,5 +1,5 @@
 <?php
-
+//Eleazar Rolando Condarco Beltran
 class ReceptorMejorado
 {
     private $lista = [];
