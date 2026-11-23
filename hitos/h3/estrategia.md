@@ -9,7 +9,7 @@ Datos duplicados
 
 Decisión que se repite
 
-Buscar entre todos los postulantes y revisar cual tiene errores para corregirlo en ese mismo momento
+BuBuscar entre todos los postulantes que faltan revisar cuál tiene errores para corregirlo en ese mismo momento
 
 2.1. ¿Alcanza elegir lo mejor ahora(Voraz)?
 
@@ -17,7 +17,7 @@ Conviene usar un enfoque voraz porque en cada paso simplemente elige y corrige a
 
 2.2. ¿Hay subproblemas que se repiten (dinamica)?
 
-Cada postulante tiene sus propios datos y se revisa de forma independiente, corregir o verificar a un postulante no ayuda a resolver el caso de otro por lo que no existen subproblemas repetidos, por lo tanto no puede ser dinamico
+No. Cada postulante tiene sus propios datos y se revisa de forma independiente, corregir o verificar a un postulante no ayuda a resolver el caso de otro por lo que no existen subproblemas repetidos y no puede ser programación dinamico
 
 
 
