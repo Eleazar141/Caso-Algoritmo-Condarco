@@ -40,4 +40,4 @@ tiempo obtenido: 0.012345 segundos
 
 ¿Qué pasaría con tu solución si la capacidad fuera 1.000.000.000 de kg? Explícalo (1,5).
 
-el programa tardaria mucho más en funcionar y podria incluso dejar de responder debido a la gran cantidad de datos que tendria que manejar
+si la capacidad fuera 1000000000 kg el programa seria mucho mas lento y podria tener problemas para ejecutarse por el tamaño de los datos que debe manejar
