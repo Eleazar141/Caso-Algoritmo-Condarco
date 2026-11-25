@@ -1,6 +1,6 @@
 
 <?php
-
+//Eleazar Rolando Condarco Beltran
 class PlanificadorMejorado
 {
     private $enViaje = [];
