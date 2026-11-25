@@ -76,15 +76,15 @@ $planificador = new PlanificadorMejorado();
 
 $resultado = $planificador->Elegir($paquetes, 10);
 
-echo "Ganancia: " . $resultado["ganancia"] . PHP_EOL;
+echo "Ganancia: " . $resultado["ganancia"] . "<br><br>";
 
 echo "Paquetes elegidos: ";
-echo implode(", ", $resultado["codigos"]) . PHP_EOL;
+echo implode(", ", $resultado["codigos"]) ."<br><br>";
 
 echo "A esta en el viaje: ";
 echo $planificador->EstaEnElViaje("A") ? "SI" : "NO";
-echo PHP_EOL;
+echo "<br><br>";
 
 echo "C esta en el viaje: ";
 echo $planificador->EstaEnElViaje("C") ? "SI" : "NO";
-echo PHP_EOL;
+echo "<br><br>";
