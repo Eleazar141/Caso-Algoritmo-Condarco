@@ -2,11 +2,9 @@ Analisis de algoritmos
 
 descripcion:
 
-en este trabajo se uso un caso de la auto escuela concordia
+en este trabajo se uso el caso de la auto escuela Concordia, el problema era que al revisar los datos de los postulantes tomaba bastante tiempo sobre todo cuando habia errores o datos repetidos y por lo tanto tenian q ser corregidos en ese mismo instante.
 
-el problema era que revisar los datos de los postulantes tomaba bastante tiempo sobre todo cuando habia errores o datos repetidos
-
-la idea fue buscar una forma mas rapida y ordenada de trabajar con los postulantes para preparar las listas y actas del examen
+la idea fue buscar una forma mas rapida y ordenada de trabajar con los postulantes para preparar las listas y actas del examen y poder realizar las correciones correspondientes
 
 contenido
 - [h1](./h1/)
